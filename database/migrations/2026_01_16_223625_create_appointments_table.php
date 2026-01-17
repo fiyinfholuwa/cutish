@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('appointments', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('available_service_id')->constrained()->onDelete('cascade');
+            $table->date('appointment_date');
+            $table->time('appointment_time');
+            $table->enum('location_type', ['home', 'venue']);
+            $table->text('address');
+            $table->text('special_requests')->nullable();
+            $table->decimal('price', 8, 2);
+            $table->enum('status', ['pending', 'confirmed', 'cancelled', 'completed', 'rescheduled'])->default('pending');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('appointments');
+    }
+};
