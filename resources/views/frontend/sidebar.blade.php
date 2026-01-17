@@ -1,3 +1,5 @@
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <div class="lg:col-span-1">
     <!-- Desktop Sidebar -->
     <div class="dashboard-card dashboard-sidebar hidden lg:block">
@@ -11,7 +13,46 @@
             </div>
         </div>
         
-        <div class="space-y-1">
+        @if (Auth::user()->user_type ==='admin')
+<div class="space-y-1">
+            <a href="{{ route('admin.dashboard') }}" class="dashboard-tab {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <i class="fas fa-calendar-alt mr-3"></i> Dashboard
+            </a>
+            <a href="{{ route('admin.appointments.index') }}" class="dashboard-tab {{ request()->routeIs('admin.appointments.*') ? 'active' : '' }}">
+                <i class="fas fa-receipt mr-3"></i>Appointments
+            </a>
+            <a href="{{ route('admin.services.index') }}" class="dashboard-tab {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
+                                <i class="fas fa-concierge-bell w-6 mr-3"></i>
+                Manage Services
+            </a>
+            <a href="{{ route('admin.payments.index') }}" class="dashboard-tab {{ request()->routeIs('admin.payments.*') ? 'active' : '' }}">
+                                <i class="fas fa-credit-card w-6 mr-3"></i>
+Payment History
+            </a>
+
+            <a href="{{ route('admin.users.index') }}" class="dashboard-tab {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                                <i class="fas fa-users w-6 mr-3"></i>
+Manage Users
+            </a>
+            <a href="{{ route('admin.testimonials.index') }}" class="dashboard-tab {{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}">
+                                <i class="fas fa-star w-6 mr-3"></i>
+                                <span>Manage Testimonials</span>
+            </a>
+            {{-- <a href="{{ route('admin.testimonials.index') }}" class="dashboard-tab {{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}">
+                                <i class="fas fa-star w-6 mr-3"></i>
+                                <span>Manage Contacts</span>
+            </a> --}}
+
+
+            <a href="{{ route('admin.profile') }}" class="dashboard-tab {{ request()->routeIs('admin.profile') ? 'active' : '' }}">
+                <i class="fas fa-user-cog mr-3"></i> Profile Settings
+            </a>
+            <a href="{{ route('logout') }}" id="logout-btn" class="dashboard-tab text-red-600 hover:text-red-700">
+                <i class="fas fa-sign-out-alt mr-3"></i> Logout
+            </a>
+        </div>
+        @else
+           <div class="space-y-1">
             <a href="{{ route('dashboard') }}" class="dashboard-tab {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <i class="fas fa-calendar-alt mr-3"></i> My Appointments
             </a>
@@ -24,7 +65,8 @@
             <a href="{{ route('logout') }}" id="logout-btn" class="dashboard-tab text-red-600 hover:text-red-700">
                 <i class="fas fa-sign-out-alt mr-3"></i> Logout
             </a>
-        </div>
+        </div> 
+        @endif
     </div>
 
     <!-- Mobile Navigation -->
@@ -42,8 +84,68 @@
             </div>
         </div>
 
-        <!-- Horizontal Scroll Menu -->
-        <div class="overflow-x-auto hide-scrollbar">
+@if (Auth::user()->user_type == 'admin')
+
+
+<div class="overflow-x-auto hide-scrollbar">
+    <div class="flex space-x-2 pb-2">
+
+        <a href="{{ route('admin.dashboard') }}" 
+           class="mobile-nav-tab {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            <i class="fas fa-calendar-alt text-lg mb-1"></i>
+            <span class="text-xs whitespace-nowrap">Dashboard</span>
+        </a>
+
+        <a href="{{ route('admin.appointments.index') }}" 
+           class="mobile-nav-tab {{ request()->routeIs('admin.appointments.*') ? 'active' : '' }}">
+            <i class="fas fa-receipt text-lg mb-1"></i>
+            <span class="text-xs whitespace-nowrap">Appointments</span>
+        </a>
+
+        <a href="{{ route('admin.services.index') }}" 
+           class="mobile-nav-tab {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
+            <i class="fas fa-concierge-bell text-lg mb-1"></i>
+            <span class="text-xs whitespace-nowrap">Services</span>
+        </a>
+
+        <a href="{{ route('admin.payments.index') }}" 
+           class="mobile-nav-tab {{ request()->routeIs('admin.payments.*') ? 'active' : '' }}">
+            <i class="fas fa-credit-card text-lg mb-1"></i>
+            <span class="text-xs whitespace-nowrap">Payments</span>
+        </a>
+
+        <a href="{{ route('admin.users.index') }}" 
+           class="mobile-nav-tab {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+            <i class="fas fa-users text-lg mb-1"></i>
+            <span class="text-xs whitespace-nowrap">Users</span>
+        </a>
+
+        <a href="{{ route('admin.testimonials.index') }}" 
+           class="mobile-nav-tab {{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}">
+            <i class="fas fa-star text-lg mb-1"></i>
+            <span class="text-xs whitespace-nowrap">Testimonials</span>
+        </a>
+
+        <a href="{{ route('admin.profile') }}" 
+           class="mobile-nav-tab {{ request()->routeIs('admin.profile') ? 'active' : '' }}">
+            <i class="fas fa-user-cog text-lg mb-1"></i>
+            <span class="text-xs whitespace-nowrap">Profile</span>
+        </a>
+
+        <a href="{{ route('logout') }}" 
+           id="logout-btn-mobile" 
+           class="mobile-nav-tab mobile-nav-logout">
+            <i class="fas fa-sign-out-alt text-lg mb-1"></i>
+            <span class="text-xs whitespace-nowrap">Logout</span>
+        </a>
+
+    </div>
+</div>
+
+
+@else
+
+<div class="overflow-x-auto hide-scrollbar">
             <div class="flex space-x-2 pb-2">
                 <a href="{{ route('dashboard') }}" 
                    class="mobile-nav-tab {{ request()->routeIs('dashboard') ? 'active' : '' }}">
@@ -68,6 +170,9 @@
                 </a>
             </div>
         </div>
+@endif
+        <!-- Horizontal Scroll Menu -->
+        
     </div>
 </div>
 

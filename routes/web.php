@@ -1,11 +1,21 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\BookingController;
-
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\PaymentController;
+
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
+
+
+
+
 
 
 
@@ -49,6 +59,24 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    Route::resource('appointments', AppointmentController::class);
+// No {id} in the URL, we’ll send it in the request body
+Route::post('/admin/appointments/update-status', [AppointmentController::class, 'updateStatus'])
+    ->name('appointments.update-status');
+
+    Route::resource('services', ServiceController::class);
+        Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');
+        Route::resource('users', UserController::class);
+        Route::resource('testimonials', TestimonialController::class);
+
+        Route::get('/profile', [DashboardController::class, 'admin_profile'])->name('profile');
+
 });
 
 require __DIR__.'/auth.php';

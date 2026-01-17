@@ -715,16 +715,8 @@
        class="nav-link dark-text font-medium hover:gold-text {{ request()->routeIs('gallery') ? 'gold-text' : '' }}">Gallery</a>
 
     @auth
-        @if (Auth::user()->user_type ==='admin')
-        <a href="{{ route('admin.dashboard') }}" 
-           class="nav-link dark-text font-medium hover:gold-text {{ request()->routeIs('admin.dashboard') ? 'gold-text' : '' }}">Dashboard</a>
-@else
-<a href="{{ route('dashboard') }}" 
+        <a href="{{ route('dashboard') }}" 
            class="nav-link dark-text font-medium hover:gold-text {{ request()->routeIs('dashboard') ? 'gold-text' : '' }}">Dashboard</a>
-
-            
-        @endif
-
         <a href="{{ route('logout') }}" class="nav-link dark-text font-medium hover:gold-text">Logout</a>
     @else
         <a href="{{ route('register') }}" 
@@ -787,7 +779,7 @@
 <!-- Footer -->
     <footer class="dark-bg text-white py-16">
 
-@if (request()->routeIs(['home', 'about', 'gallery', 'contact']))
+    @if (!request()->routeIs('dashboard') && !request()->routeIs('user.profile') && !request()->routeIs('payment'))
 
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
