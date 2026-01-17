@@ -118,6 +118,14 @@
                         <i class="fas fa-spinner spinner" id="btnSpinner" style="display:none;"></i>
                     </button>
                 </div>
+
+                <div class="auth-footer">
+                <p>
+                    You Already have an account?
+                    <a href="{{ route('login') }}" class="auth-link">Sign In</a>
+                </p>
+            </div>
+
             </form>
         </div>
     </div>

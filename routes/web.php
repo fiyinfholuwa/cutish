@@ -13,6 +13,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\GalleryController;
 
 
 
@@ -24,6 +25,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/gallery', 'gallery')->name('gallery');
+    Route::get('/check/login', 'check_login')->name('check_login');
 });
 
 
@@ -62,7 +64,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
     Route::resource('appointments', AppointmentController::class);
@@ -76,6 +78,10 @@ Route::post('/admin/appointments/update-status', [AppointmentController::class, 
         Route::resource('testimonials', TestimonialController::class);
 
         Route::get('/profile', [DashboardController::class, 'admin_profile'])->name('profile');
+        Route::get('/gallery', [DashboardController::class, 'admin_gallery'])->name('gallery');
+
+        Route::post('gallery/update', [GalleryController::class, 'update'])
+        ->name('gallery.update');
 
 });
 

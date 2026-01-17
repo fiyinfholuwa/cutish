@@ -23,13 +23,13 @@
                         </p>
                         
                         <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                            <a href="#" class="btn-primary inline-flex items-center justify-center" >
+                            <a href="{{ route('dashboard') }}" class="btn-primary inline-flex items-center justify-center" >
                                 <span>Book Now</span>
                                 <i class="fas fa-arrow-right ml-3"></i>
                             </a>
-                            <a href="#" class="btn-secondary inline-flex items-center justify-center">
+                            <a href="{{ route('contact') }}" class="btn-secondary inline-flex items-center justify-center">
                                 <i class="fas fa-play-circle mr-3"></i>
-                                <span>View Services</span>
+                                <span>Contact Us</span>
                             </a>
                         </div>
                         
@@ -153,7 +153,7 @@
         </div>
 
         <div class="text-center">
-            <a href="#" class="btn-pink px-12" data-section="booking">
+            <a href="{{ route('dashboard') }}" class="btn-pink px-12" data-section="booking">
                 <span>Make A Booking</span>
                 <i class="fas fa-arrow-right ml-3"></i>
             </a>
@@ -334,7 +334,7 @@
                     <div class="bg-gradient-to-r from-gold-50 to-pink-50 p-8 rounded-2xl max-w-3xl mx-auto">
                         <h3 class="text-2xl font-bold mb-4">Ready to Transform Your Hair?</h3>
                         <p class="text-gray-600 mb-6">Book your appointment today and experience the Cutish Hair difference.</p>
-                        <a href="#" class="btn-primary px-12" data-section="booking">Start Booking</a>
+                        <a href="{{ route('dashboard') }}" class="btn-primary px-12">Start Booking</a>
                     </div>
                 </div>
             </div>
@@ -445,97 +445,55 @@
                     <div class="bg-gradient-to-r from-gold-50 to-pink-50 p-8 rounded-2xl max-w-3xl mx-auto">
                         <h3 class="text-2xl font-bold mb-4">Ready to Transform Your Hair?</h3>
                         <p class="text-gray-600 mb-6">Book your appointment today and experience the Cutish Hair difference.</p>
-                        <a href="#" class="btn-primary px-12" data-section="booking">Start Booking</a>
+                        <a href="{{ route('dashboard') }}" class="btn-primary px-12">Start Booking</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="section-padding  light-bg">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6 dark-text">
-                        What Our <span class="gradient-text">Clients Say</span>
-                    </h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        Don't just take our word for it—hear from our satisfied clients who have experienced the Cutish Hair difference.
+@if (count($testimonials) > 0)
+<section id="testimonials" class="section-padding light-bg">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 dark-text">
+                What Our <span class="gradient-text">Clients Say</span>
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Don't just take our word for it—hear from our satisfied clients who have experienced the Cutish Hair difference.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach ($testimonials as $testimonial)
+                <div class="testimonial-card fade-in">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-gold-200">
+                            <img src="{{ asset($testimonial->image) }}" alt="{{ $testimonial->name }}" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">{{ $testimonial->name }}</h4>
+                            <p class="text-gold-600">{{ $testimonial->title ?? 'Client' }}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">
+                        "{{ $testimonial->description }}"
                     </p>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="testimonial-card fade-in">
-                        <div class="flex items-center mb-6">
-                            <div class="w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-gold-200">
-                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                                     alt="Client" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg">Jessica M.</h4>
-                                <p class="text-gold-600">Toronto • Regular Client</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic mb-6">
-                            "I've been using Cutish Hair for over a year and I'm consistently impressed. The convenience of having a professional come to my home has been life-changing. My silk press always lasts for weeks!"
-                        </p>
-                        <div class="flex">
-                            <i class="fas fa-star gold-text mr-1"></i>
-                            <i class="fas fa-star gold-text mr-1"></i>
-                            <i class="fas fa-star gold-text mr-1"></i>
-                            <i class="fas fa-star gold-text mr-1"></i>
-                            <i class="fas fa-star gold-text"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card fade-in delay-2">
-                        <div class="flex items-center mb-6">
-                            <div class="w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-gold-200">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                                     alt="Client" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg">Michael T.</h4>
-                                <p class="text-gold-600">Mississauga • Wedding Client</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic mb-6">
-                            "The bridal styling service was exceptional! Cutish Hair transformed my entire bridal party for my wedding day. Professional, punctual, and incredibly talented."
-                        </p>
-                        <div class="flex">
-                            <i class="fas fa-star gold-text mr-1"></i>
-                            <i class="fas fa-star gold-text mr-1"></i>
-                            <i class="fas fa-star gold-text mr-1"></i>
-                            <i class="fas fa-star gold-text mr-1"></i>
-                            <i class="fas fa-star gold-text"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card fade-in delay-4">
-                        <div class="flex items-center mb-6">
-                            <div class="w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-gold-200">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                                     alt="Client" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg">Sarah K.</h4>
-                                <p class="text-gold-600">North York • Wig Installation</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic mb-6">
-                            "As a busy professional, I don't have time to visit salons. Cutish Hair has been a game-changer. The wig installation service is flawless—I get compliments every time!"
-                        </p>
-                        <div class="flex">
-                            <i class="fas fa-star gold-text mr-1"></i>
-                            <i class="fas fa-star gold-text mr-1"></i>
-                            <i class="fas fa-star gold-text mr-1"></i>
-                            <i class="fas fa-star gold-text mr-1"></i>
-                            <i class="fas fa-star gold-text"></i>
-                        </div>
+                    <div class="flex">
+                        @for ($i = 1; $i <= 5; $i++)
+                            @if ($i <= $testimonial->rating)
+                                <i class="fas fa-star gold-text mr-1"></i>
+                            @else
+                                <i class="far fa-star gold-text mr-1"></i>
+                            @endif
+                        @endfor
                     </div>
                 </div>
-            </div>
-        </section>
-
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+        
        
 
         <!-- Booking Section -->

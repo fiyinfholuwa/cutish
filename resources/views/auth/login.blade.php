@@ -166,7 +166,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
         });
 
         if (response.ok) {
-            window.location.href = "{{ route('dashboard') }}";
+            window.location.href = "{{ route('check_login') }}";
             return;
         }
 

@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         
-                        <a href="#" class="btn-primary inline-flex items-center" data-section="booking">
+                        <a href="{{ route('dashboard') }}" class="btn-primary inline-flex items-center" data-section="booking">
                             <span>Book Consultation</span>
                             <i class="fas fa-arrow-right ml-3"></i>
                         </a>

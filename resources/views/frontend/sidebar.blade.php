@@ -38,10 +38,10 @@ Manage Users
                                 <i class="fas fa-star w-6 mr-3"></i>
                                 <span>Manage Testimonials</span>
             </a>
-            {{-- <a href="{{ route('admin.testimonials.index') }}" class="dashboard-tab {{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.gallery') }}" class="dashboard-tab {{ request()->routeIs('admin.gallery') ? 'active' : '' }}">
                                 <i class="fas fa-star w-6 mr-3"></i>
-                                <span>Manage Contacts</span>
-            </a> --}}
+                                <span>Manage Gallery</span>
+            </a>
 
 
             <a href="{{ route('admin.profile') }}" class="dashboard-tab {{ request()->routeIs('admin.profile') ? 'active' : '' }}">

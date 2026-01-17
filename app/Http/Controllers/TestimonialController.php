@@ -72,13 +72,25 @@ class TestimonialController extends Controller
         $data = $request->except('image');
         
         if ($request->hasFile('image')) {
-            // Delete old image
-            if ($testimonial->image) {
-                Storage::disk('public')->delete($testimonial->image);
+            $file = $request->file('image');
+    
+            // Path inside public/
+            $folder = public_path('testimonials');
+    
+            // Create folder if it does not exist
+            if (!file_exists($folder)) {
+                mkdir($folder, 0755, true);
             }
-            $data['image'] = $request->file('image')->store('testimonials', 'public');
-        }
-        
+    
+            // Generate unique filename
+            $filename = time() . '_' . $file->getClientOriginalName();
+    
+            // Move file to public/testimonials
+            $file->move($folder, $filename);
+    
+            // Save relative path in DB
+            $data['image'] = 'testimonials/' . $filename;
+        } 
         $testimonial->update($data);
         
         return response()->json([

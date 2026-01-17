@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -26,6 +27,12 @@ class DashboardController extends Controller
 
     public function admin_profile(){
         return view('admin.profile');
+    }
+    public function admin_gallery(){
+        $galleryImages = Gallery::all();
+
+
+        return view('admin.gallery', compact('galleryImages'));
     }
 
 }
