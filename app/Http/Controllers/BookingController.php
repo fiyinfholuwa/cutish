@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
-    private $paypal_base_url = "https://api.sandbox.paypal.com";
+    private $paypal_base_url = "https://api.paypal.com";
 
     public function dashboard()
     {
@@ -293,11 +293,14 @@ class BookingController extends Controller
 
     private function paypal_access_token()
     {
+        $client_id = env('PAYPAL_CLIENT_ID');
+        $secret_key = env('PAYPAL_SECRET_KEY');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "$this->paypal_base_url/v1/oauth2/token");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_USERPWD, "AcNr71oN4IBUQhkPZY-G7328zjbs2LKkG22zytA7iVaMom6sdlR1B8ET7D9P4ajNcrHlRYDK0d7rYmki:EDPMMX4MLKvgz-eNvOi75r9uUd1CQutsJ4dRSa1cXHSDEyaBsd-fRpsB1wQSOIr09Np0VFrPHcaqf0tW");
+        // curl_setopt($ch, CURLOPT_USERPWD, "AcNr71oN4IBUQhkPZY-G7328zjbs2LKkG22zytA7iVaMom6sdlR1B8ET7D9P4ajNcrHlRYDK0d7rYmki:EDPMMX4MLKvgz-eNvOi75r9uUd1CQutsJ4dRSa1cXHSDEyaBsd-fRpsB1wQSOIr09Np0VFrPHcaqf0tW");
+        curl_setopt($ch, CURLOPT_USERPWD, $client_id.":".$secret_key);
         curl_setopt($ch, CURLOPT_POSTFIELDS, "grant_type=client_credentials");
 
         $headers = [
