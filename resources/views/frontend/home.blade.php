@@ -9,7 +9,7 @@
         <section id="home" class="hero-section active-section">
             <div class="container mx-auto px-6 py-20">
                 <div class="flex flex-col lg:flex-row items-center justify-between">
-                    <div class="lg:w-1/2 mb-16 lg:mb-0">
+                    <div style="margin-top:50px;" class="lg:w-1/2 mb-16 lg:mb-0">
                         <div class="hero-badge">
                             <span class="text-white text-sm font-medium">✨ Premium Mobile Hairstyling</span>
                         </div>
