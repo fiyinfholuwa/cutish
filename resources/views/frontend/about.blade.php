@@ -13,9 +13,57 @@
                 <div class="flex flex-col lg:flex-row items-center gap-16">
                     <div class="lg:w-1/2">
                         <div class="relative">
-                            <img src="https://blog.withsplice.com/wp-content/uploads/2024/06/woman-getting-her-hair-done-salon-1024x819.jpg" 
-                                 alt="Professional hairstylist at work" 
-                                 class="rounded-2xl shadow-2xl w-full">
+                            <div class="hero-video-wrapper">
+    <div class="hero-video-wrapper">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="{{ asset('video.mp4') }}" type="video/mp4">
+    </video>
+</div>
+</div>
+
+<style>
+.hero-video-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: top;
+
+    margin-top: 0 !important;   /* 👈 kill external push */
+    padding-top: 0 !important;  /* 👈 remove top spacing */
+    position: relative;
+    top: 10px;                 /* 👈 controlled lift */
+}
+.hero-video {
+    width: 100%;
+    max-width: 600px !important;
+
+    height: 260px;
+    object-fit: top;
+    object-position: cover;
+
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .hero-video {
+        height: 340px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .hero-video {
+        max-width: 650px;
+        height: 420px;
+        object-position: top;
+    }
+
+    .hero-video-wrapper {
+        margin-top: -20px; /* slightly more lift on big screens */
+    }
+}
+</style></style>
                             <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl hidden lg:block w-64">
                                 <div class="flex items-center">
                                     <div class="w-12 h-12 rounded-full gold-bg flex items-center justify-center mr-4">

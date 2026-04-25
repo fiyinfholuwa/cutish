@@ -57,10 +57,48 @@
                     
                     <div class="lg:w-1/2">
                         <div class="hero-image-container relative">
-                            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                                 alt="Professional hairstyling service" 
-                                 class="hero-image w-full max-w-lg">
-                            
+                            <div class="hero-image-wrapper">
+    <img src="{{ asset('img1.jpeg') }}" 
+         alt="Professional hairstyling service" 
+         class="hero-image">
+</div>
+
+<style>
+.hero-image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.hero-image {
+    width: 400px;
+    max-width: 520px;
+
+    height: 460px;              /* 👈 controls tallness */
+    object-fit: cover;          /* crops nicely */
+    object-position: center;    /* keeps focus centered */
+
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .hero-image {
+        height: 320px;
+        width:100% !important;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .hero-image {
+        height: 380px;
+        max-width: 600px;
+    }
+}
+</style>
                             <div class="floating-badge floating-badge-1">
                                 <div class="w-12 h-12 rounded-full gold-bg flex items-center justify-center mr-4">
                                     <i class="fas fa-star text-white"></i>
